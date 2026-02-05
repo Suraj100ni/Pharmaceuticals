@@ -1,4 +1,4 @@
-import logoImage from "figma:asset/5c9a9cc8cb00b7e75f6039c9f6b2cd6d0d88d764.png";
+import logoImage from "@/assets/logo.png";
 
 interface LogoProps {
   variant?: "default" | "footer";
