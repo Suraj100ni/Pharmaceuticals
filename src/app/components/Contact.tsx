@@ -75,12 +75,7 @@ export function Contact() {
   };
 
   const contactInfo = [
-    {
-      icon: Phone,
-      title: 'Phone',
-      details: ['+1 (555) 123-4567', '+1 (555) 987-6543'],
-      color: 'text-primary'
-    },
+    
     {
       icon: Mail,
       title: 'Email',
