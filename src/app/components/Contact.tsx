@@ -79,7 +79,7 @@ export function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@clifepharma.com', 'support@clifepharma.com'],
+      details: ['hr@clifepharmaceuticals.com'],
       color: 'text-accent'
     },
     {
