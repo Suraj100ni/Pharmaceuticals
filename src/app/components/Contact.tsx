@@ -84,8 +84,8 @@ export function Contact() {
     },
     {
       icon: MapPin,
-      title: 'Headquarters',
-      details: ['123 Pharma Plaza', 'Medical District, HC 12345'],
+      title: 'Location',
+      details: ['North Zone Operations:', '46- Sanjay Nagar j&K-10', 'H.O. Golden Square Bengaluru-78'],
       color: 'text-primary'
     },
   ];
