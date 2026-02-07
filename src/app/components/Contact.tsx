@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { useEffect, useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 
 export function Contact() {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,13 +24,15 @@ export function Contact() {
       { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -75,7 +77,6 @@ export function Contact() {
   };
 
   const contactInfo = [
-    
     {
       icon: Mail,
       title: 'Email',
@@ -118,7 +119,7 @@ export function Contact() {
         </motion.div>
 
         {/* Contact Info Cards */}
-         <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16 max-w-4xl mx-auto">
           {contactInfo.map((info, index) => (
             <motion.div
               key={index}
@@ -126,12 +127,12 @@ export function Contact() {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100"
+              className="bg-white p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-100"
             >
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
-                className={`w-16 h-16 ${info.color === 'text-primary' ? 'bg-secondary' : 'bg-accent/10'} rounded-2xl flex items-center justify-center mb-6`}
+                className={`w-14 h-14 md:w-16 md:h-16 ${info.color === 'text-primary' ? 'bg-secondary' : 'bg-accent/10'} rounded-2xl flex items-center justify-center mb-4 md:mb-6`}
               >
                 <info.icon className={`w-8 h-8 ${info.color}`} />
               </motion.div>
