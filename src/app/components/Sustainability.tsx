@@ -12,16 +12,18 @@ export function Sustainability() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -74,15 +76,20 @@ export function Sustainability() {
           <img
             src="https://images.unsplash.com/photo-1759548845813-12a8cfc96b70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMG1hbnVmYWN0dXJpbmclMjBmYWNpbGl0eSUyMGdyZWVuJTIwbGFuZHNjYXBlfGVufDF8fHx8MTc2OTgzNTQ2N3ww&ixlib=rb-4.1.0&q=80&w=1080"
             alt="State-of-the-art pharmaceutical manufacturing facility"
-            className="w-full h-[500px] object-cover"
+            className="w-full h-64 md:h-80 lg:h-[500px] object-cover"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent flex items-center">
-            <div className="container mx-auto px-4 md:px-12">
-              <div className="max-w-2xl text-white">
-                <h3 className="text-4xl mb-4">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent flex items-center">
+            <div className="container mx-auto px-4 md:px-8 lg:px-12">
+              <div className="max-w-xl lg:max-w-2xl text-white py-4">
+                <h3 className="text-xl md:text-2xl lg:text-4xl mb-2 md:mb-3 lg:mb-4 font-semibold">
                   Environmental Commitment
                 </h3>
-                <p className="text-lg mb-6 text-white/90">
+                <p className="text-sm md:text-base lg:text-lg mb-3 md:mb-4 lg:mb-6 text-white/90 leading-snug">
                   At C Life Pharmaceuticals, sustainability is
                   an integral part of our long-term vision. We
                   promote environmentally responsible practices
@@ -105,14 +112,14 @@ export function Sustainability() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="bg-white p-12 rounded-3xl shadow-xl"
+          className="bg-white p-6 md:p-8 lg:p-12 rounded-3xl shadow-xl"
         >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h3 className="text-3xl text-gray-900 mb-6">
+              <h3 className="text-2xl md:text-3xl text-gray-900 mb-4 md:mb-6">
                 Social Responsibility
               </h3>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-base md:text-lg text-gray-600 mb-4 md:mb-6">
                 At C Life Pharmaceuticals, we believe
                 responsible growth goes hand in hand with social
                 impact. Our focus is on improving healthcare
@@ -158,14 +165,14 @@ export function Sustainability() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-8 px-8 py-4 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors shadow-lg"
+                className="mt-8 px-6 py-3 md:px-8 md:py-4 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors shadow-lg text-sm md:text-base"
               >
                 Learn More About CSR
               </motion.button>
             </div>
 
             {/* Impact Stats */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               {[
                 {
                   icon: "🌍",
@@ -199,15 +206,15 @@ export function Sustainability() {
                     type: "spring",
                   }}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-gradient-to-br from-primary to-primary/80 text-white p-6 rounded-2xl text-center shadow-lg"
+                  className="bg-gradient-to-br from-primary to-primary/80 text-white p-4 md:p-6 rounded-2xl text-center shadow-lg"
                 >
-                  <div className="text-4xl mb-3">
+                  <div className="text-3xl md:text-4xl mb-2 md:mb-3">
                     {stat.icon}
                   </div>
-                  <div className="text-sm mb-2 opacity-90">
+                  <div className="text-xs md:text-sm mb-1 md:mb-2 opacity-90 font-semibold">
                     {stat.title}
                   </div>
-                  <div className="text-xs">{stat.value}</div>
+                  <div className="text-[10px] md:text-xs leading-tight">{stat.value}</div>
                 </motion.div>
               ))}
             </div>
