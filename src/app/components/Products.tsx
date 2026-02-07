@@ -14,16 +14,18 @@ export function Products() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -160,7 +162,7 @@ export function Products() {
         </motion.div>
 
         {/* Interactive Product Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 mb-12">
           {therapyAreas.map((area, index) => (
             <motion.div
               key={index}
@@ -175,7 +177,7 @@ export function Products() {
                 scale: 1.02,
               }}
               onClick={() => setActiveTab(index)}
-              className={`${area.color} p-8 rounded-3xl cursor-pointer transition-all border-2 flex flex-col h-full ${
+              className={`${area.color} p-6 md:p-8 rounded-3xl cursor-pointer transition-all border-2 flex flex-col h-full ${
                 activeTab === index
                   ? area.borderColor
                   : "border-transparent"
@@ -184,24 +186,24 @@ export function Products() {
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
-                className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-md`}
+                className={`w-14 h-14 md:w-16 md:h-16 bg-white rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-md`}
               >
                 <area.icon
-                  className={`w-8 h-8 ${area.iconColor}`}
+                  className={`w-7 h-7 md:w-8 md:h-8 ${area.iconColor}`}
                 />
               </motion.div>
 
-              <h3 className="text-2xl text-gray-900 mb-3">
+              <h3 className="text-xl md:text-2xl text-gray-900 mb-2 md:mb-3">
                 {area.title}
               </h3>
-              <p className="text-gray-600 mb-4 flex-grow">
+              <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 flex-grow">
                 {area.description}
               </p>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-6 w-full py-3 bg-white text-primary rounded-full hover:bg-primary hover:text-white transition-colors shadow-md"
+                className="mt-4 md:mt-6 w-full py-2.5 md:py-3 bg-white text-primary rounded-full hover:bg-primary hover:text-white transition-colors shadow-md text-sm md:text-base"
               >
                 Explore Products
               </motion.button>
@@ -219,20 +221,25 @@ export function Products() {
           <img
             src="https://images.unsplash.com/photo-1675851143055-23ae996bb212?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwbWVkaWNpbmUlMjBwaWxsc3xlbnwxfHx8fDE3NjY2MzY3NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080"
             alt="Healthcare medicine and pharmaceutical products"
-            className="w-full h-96 object-cover"
+            className="w-full h-64 md:h-80 lg:h-96 object-cover"
+            loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-transparent flex items-center">
-            <div className="container mx-auto px-4 md:px-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent flex items-center">
+            <div className="container mx-auto px-4 md:px-8 lg:px-12">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="max-w-2xl text-white"
+                className="max-w-xl lg:max-w-2xl text-white py-4"
               >
-                <h3 className="text-4xl mb-4">
+                <h3 className="text-xl md:text-2xl lg:text-4xl mb-2 md:mb-3 lg:mb-4 font-semibold">
                   Quality You Can Trust
                 </h3>
-                <p className="text-lg mb-6 text-white/90">
+                <p className="text-sm md:text-base lg:text-lg mb-3 md:mb-4 lg:mb-6 text-white/90 leading-snug">
                   C Life Pharmaceuticals partners with certified
                   manufacturing facilities that comply with
                   WHO-GMP and applicable regulatory guidelines,
@@ -242,7 +249,7 @@ export function Products() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-white text-primary rounded-full hover:bg-accent hover:text-white transition-colors shadow-lg"
+                  className="px-5 py-2.5 md:px-6 md:py-3 lg:px-8 lg:py-4 bg-white text-primary rounded-full hover:bg-accent hover:text-white transition-colors shadow-lg text-xs md:text-sm lg:text-base font-medium"
                 >
                   View Product Catalog
                 </motion.button>
@@ -256,13 +263,14 @@ export function Products() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8"
         >
           {[
             "WHO-GMP",
             "FDA Approved",
             "ISO 9001:2015",
             "EMA Certified",
+            "FSSAI",
           ].map((cert, index) => (
             <motion.div
               key={index}
