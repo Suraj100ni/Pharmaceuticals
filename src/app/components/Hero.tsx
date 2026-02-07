@@ -89,10 +89,10 @@ export function Hero({ onNavigate }: HeroProps) {
                   e.preventDefault();
                   onNavigate("products");
                 }}
-                className="px-8 py-4 bg-primary text-white rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-lg"
+                className="px-6 py-3 md:px-8 md:py-4 bg-primary text-white rounded-full flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors shadow-lg text-sm md:text-base"
               >
                 Explore Our Products
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
               </motion.a>
 
               <motion.a
@@ -103,7 +103,7 @@ export function Hero({ onNavigate }: HeroProps) {
                   e.preventDefault();
                   onNavigate("research");
                 }}
-                className="px-8 py-4 bg-white text-primary border-2 border-primary rounded-full hover:bg-primary hover:text-white transition-all shadow-lg"
+                className="px-6 py-3 md:px-8 md:py-4 bg-white text-primary border-2 border-primary rounded-full hover:bg-primary hover:text-white transition-all shadow-lg text-sm md:text-base"
               >
                 Our Research
               </motion.a>
@@ -114,29 +114,30 @@ export function Hero({ onNavigate }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="grid grid-cols-3 gap-6 pt-8"
+              className="grid grid-cols-3 gap-4 md:gap-6 pt-8"
             >
               {[
-                { value: "20+", label: "Indian States & UT’s" },
-                { value: "70+", label: "Products" },
-                { value: "25+", label: "Backed by a team with decades of experience in the industry" },
+                { value: "20+", label: "Indian States & UT's" },
+                { value: "70+", label: "Quality Products" },
+                { value: "500K+", label: "Lives Served" },
               ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{
-                      delay: 1 + index * 0.1,
-                      duration: 0.5,
-                    }}
-                    className="text-3xl text-primary mb-2"
-                  >
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: 1 + index * 0.1,
+                    type: "spring",
+                  }}
+                  className="text-center"
+                >
+                  <div className="text-2xl md:text-3xl lg:text-4xl text-primary mb-1 md:mb-2">
                     {stat.value}
-                  </motion.div>
-                  <div className="text-sm text-gray-600">
+                  </div>
+                  <div className="text-xs md:text-sm text-gray-600">
                     {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
@@ -163,6 +164,11 @@ export function Hero({ onNavigate }: HeroProps) {
                 src="https://images.unsplash.com/photo-1738778151585-36b19054059a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMHJlc2VhcmNoJTIwbGFib3JhdG9yeXxlbnwxfHx8fDE3NjY1NzA1ODN8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Pharmaceutical research laboratory with advanced equipment"
                 className="rounded-3xl shadow-2xl w-full h-auto max-w-full"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
             </motion.div>
 
