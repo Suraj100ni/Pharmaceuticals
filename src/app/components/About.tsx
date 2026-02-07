@@ -16,13 +16,15 @@ export function About() {
       { threshold: 0.1 },
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -103,6 +105,11 @@ export function About() {
                 src="https://images.unsplash.com/photo-1758573466989-bbf14f1db77e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwc2NpZW5jZSUyMGlubm92YXRpb258ZW58MXx8fHwxNzY2NjM2NzQ2fDA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Medical science innovation and pharmaceutical research"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
@@ -148,20 +155,14 @@ export function About() {
               comes to human lives, nothing else matters.
             </p>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <button className="px-8 py-4 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors shadow-lg mt-4">
+            <button className="px-6 py-3 md:px-8 md:py-4 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors shadow-lg mt-4 text-sm md:text-base">
                 Learn More About Us
               </button>
-            </motion.div>
           </motion.div>
         </div>
 
         {/* Values Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {values.map((value, index) => (
             <motion.div
               key={index}
@@ -175,21 +176,21 @@ export function About() {
                 y: -10,
                 boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
               }}
-              className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-primary/20 transition-all"
+              className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 hover:border-primary/20 transition-all"
             >
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
-                className={`w-16 h-16 ${value.color === "text-primary" ? "bg-secondary" : "bg-accent/10"} rounded-2xl flex items-center justify-center mb-6`}
+                className={`w-14 h-14 md:w-16 md:h-16 ${value.color === "text-primary" ? "bg-secondary" : "bg-accent/10"} rounded-2xl flex items-center justify-center mb-4 md:mb-6`}
               >
                 <value.icon
-                  className={`w-8 h-8 ${value.color}`}
+                  className={`w-7 h-7 md:w-8 md:h-8 ${value.color}`}
                 />
               </motion.div>
-              <h4 className="text-xl text-gray-900 mb-3">
+              <h4 className="text-lg md:text-xl text-gray-900 mb-2 md:mb-3">
                 {value.title}
               </h4>
-              <p className="text-gray-600">
+              <p className="text-sm md:text-base text-gray-600">
                 {value.description}
               </p>
             </motion.div>
