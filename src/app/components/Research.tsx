@@ -16,16 +16,18 @@ export function Research() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -117,55 +119,55 @@ export function Research() {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid md:grid-cols-3 gap-8 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-20"
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-br from-primary to-primary/80 text-white p-10 rounded-3xl shadow-2xl text-center"
+            className="bg-gradient-to-br from-primary to-primary/80 text-white p-8 md:p-10 rounded-3xl shadow-2xl text-center"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={isVisible ? { scale: 1 } : {}}
               transition={{ delay: 0.4, type: "spring" }}
-              className="text-6xl mb-4"
+              className="text-4xl md:text-5xl lg:text-6xl mb-3 md:mb-4"
             >
               {count1}+
             </motion.div>
-            <div className="text-xl">
+            <div className="text-base md:text-lg lg:text-xl">
               Products Across Key Therapies
             </div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-br from-accent to-accent/80 text-white p-10 rounded-3xl shadow-2xl text-center"
+            className="bg-gradient-to-br from-accent to-accent/80 text-white p-8 md:p-10 rounded-3xl shadow-2xl text-center"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={isVisible ? { scale: 1 } : {}}
               transition={{ delay: 0.6, type: "spring" }}
-              className="text-6xl mb-4"
+              className="text-4xl md:text-5xl lg:text-6xl mb-3 md:mb-4"
             >
               {count2}+
             </motion.div>
-            <div className="text-xl">
+            <div className="text-base md:text-lg lg:text-xl">
               Certified Manufacturing Partners
             </div>
           </motion.div>
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-gradient-to-br from-gray-800 to-gray-700 text-white p-10 rounded-3xl shadow-2xl text-center"
+            className="bg-gradient-to-br from-gray-800 to-gray-700 text-white p-8 md:p-10 rounded-3xl shadow-2xl text-center sm:col-span-2 md:col-span-1"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={isVisible ? { scale: 1 } : {}}
               transition={{ delay: 0.8, type: "spring" }}
-              className="text-6xl mb-4"
+              className="text-4xl md:text-5xl lg:text-6xl mb-3 md:mb-4"
             >
               Pan-India
             </motion.div>
-            <div className="text-xl">Distribution Network</div>
+            <div className="text-base md:text-lg lg:text-xl">Distribution Network</div>
           </motion.div>
         </motion.div>
 
@@ -186,6 +188,11 @@ export function Research() {
                 src="https://images.unsplash.com/photo-1738778151585-36b19054059a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaGFybWFjZXV0aWNhbCUyMHJlc2VhcmNoJTIwbGFib3JhdG9yeXxlbnwxfHx8fDE3NjY1NzA1ODN8MA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="Pharmaceutical research laboratory conducting innovative experiments"
                 className="w-full h-[600px] object-cover"
+                loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </motion.div>
