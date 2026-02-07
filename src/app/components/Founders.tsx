@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState, useEffect, useRef } from "react";
-import { ArrowLeft, Quote } from "lucide-react";
+import { ArrowLeft, Quote, Sparkles, Zap, Target } from "lucide-react";
 
 interface FoundersProps {
   onBack: () => void;
@@ -17,16 +17,20 @@ export function Founders({ onBack }: FoundersProps) {
 
   const founders = [
     {
-      name: "Nehrika Sharma",
+      name: "Niharika Verma",
       title: "Managing Director",
-      image: "https://images.unsplash.com/photo-1758518727888-ffa196002e59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHdvbWFuJTIwZXhlY3V0aXZlJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzY5OTU2OTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      initials: "NV",
+      color: "from-primary to-emerald-600",
+      icon: Target,
       message:
         '"At C-Life Pharmaceuticals, we see more than medicines - we see lives. This belief is the foundation of everything we do and the driving force behind our commitment to healthcare excellence.\n\nGuided by care, science, and integrity, we are dedicated to improving health and enhancing quality of life through reliable and effective healthcare solutions. Our focus remains on delivering high-quality medicines that meet global standards while addressing the evolving needs of patients and healthcare professionals.\n\nWith a clear vision of "A Vision for Healthier Lives," C-Life Pharmaceuticals continuously strives for innovation, ethical practices, and sustainable growth. We believe that trust, transparency, and responsibility are essential in building long-lasting relationships with doctors, partners, and communities.\n\nAs we move forward, our mission remains unchanged, to serve humanity with compassion, uphold excellence in every endeavor, and contribute meaningfully to a healthier society."',
     },
     {
       name: "Simren Kaur",
-      title: "Director of Promotions",
-      image: "https://images.unsplash.com/photo-1767362828069-3a8c5324be53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzcyUyMHdvbWFuJTIwZGlyZWN0b3IlMjBwb3J0cmFpdHxlbnwxfHx8fDE3Njk5NTY5NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      title: "Promoter Director",
+      initials: "SK",
+      color: "from-accent to-orange-600",
+      icon: Sparkles,
       message:
         '"The pharmaceutical industry today is moving beyond short-term objectives toward purpose-driven growth. We are expanding strongly across the country, with a clear vision to become self-manufacturers of high-quality medicines that place patient\'s health, well-being, and trust at the heart of everything we do.\n\nWhat truly sets us apart is our unwavering commitment to every patient we serve, understanding their needs, supporting their health journey, and ensuring they can rely on us for safe and effective therapies. As part of this journey, we are developing state-of-the-art, sustainable manufacturing facilities that allow us to deliver medicines responsibly and reliably. Above all, our work is guided by the people we serve helping every patient live healthier, fuller lives is what drives us every day."',
     },
@@ -74,53 +78,215 @@ export function Founders({ onBack }: FoundersProps) {
 
         {/* Founders Messages */}
         <div className="space-y-16">
-          {founders.map((founder, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
-              className="bg-white rounded-3xl shadow-2xl overflow-hidden"
-            >
-              <div className="grid lg:grid-cols-2 gap-8">
-                {/* Image Section */}
-                <div className="relative h-96 lg:h-auto">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-                  <img
-                    src={founder.image}
-                    alt={founder.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900/90 to-transparent p-8">
-                    <h3 className="text-3xl text-white mb-2">{founder.name}</h3>
-                    <p className="text-xl text-white/90">{founder.title}</p>
-                    <p className="text-sm text-white/80 mt-1">
-                      C Life Pharmaceuticals
-                    </p>
-                  </div>
+          {founders.map((founder, index) => {
+            const IconComponent = founder.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 + index * 0.2 }}
+                className="relative bg-white rounded-3xl shadow-2xl overflow-hidden"
+              >
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, currentColor 2px, currentColor 4px),
+                      repeating-linear-gradient(90deg, transparent, transparent 2px, currentColor 2px, currentColor 4px)`,
+                    backgroundSize: '20px 20px',
+                  }} />
                 </div>
 
-                {/* Message Section */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="mb-6">
-                    <Quote className="w-12 h-12 text-primary/30" />
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Tech Avatar Section */}
+                  <div className="relative min-h-[500px] lg:h-auto bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+                    {/* Animated Gradient Orbs */}
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 180, 360],
+                      }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className={`absolute top-1/4 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br ${founder.color} rounded-full blur-3xl opacity-30`}
+                    />
+                    <motion.div
+                      animate={{
+                        scale: [1.2, 1, 1.2],
+                        rotate: [360, 180, 0],
+                      }}
+                      transition={{
+                        duration: 15,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className={`absolute bottom-1/4 right-1/4 w-56 h-56 md:w-72 md:h-72 bg-gradient-to-br ${founder.color} rounded-full blur-3xl opacity-20`}
+                    />
+
+                    {/* Hexagonal Pattern */}
+                    <div className="absolute inset-0 opacity-10 hidden md:block">
+                      {[...Array(6)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.1, duration: 0.5 }}
+                          className="absolute border border-white/20"
+                          style={{
+                            width: `${100 + i * 50}px`,
+                            height: `${100 + i * 50}px`,
+                            top: `calc(50% - ${50 + i * 25}px)`,
+                            left: `calc(50% - ${50 + i * 25}px)`,
+                            clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Center Content */}
+                    <div className="relative h-full flex flex-col items-center justify-center p-6 md:p-12 z-10">
+                      {/* Animated Icon */}
+                      <motion.div
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={isVisible ? { scale: 1, rotate: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
+                        className="mb-4 md:mb-8"
+                      >
+                        <div className={`relative w-20 h-20 md:w-32 md:h-32 bg-gradient-to-br ${founder.color} rounded-xl md:rounded-2xl flex items-center justify-center shadow-2xl`}>
+                          <IconComponent className="w-10 h-10 md:w-16 md:h-16 text-white" />
+                          {/* Pulse Effect */}
+                          <motion.div
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.5, 0, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className={`absolute inset-0 bg-gradient-to-br ${founder.color} rounded-xl md:rounded-2xl`}
+                          />
+                        </div>
+                      </motion.div>
+
+                      {/* Initials Display */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.5 + index * 0.2 }}
+                        className="text-center mb-4 md:mb-6"
+                      >
+                        <div className={`text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r ${founder.color} bg-clip-text text-transparent mb-2 md:mb-4`}>
+                          {founder.initials}
+                        </div>
+                        <div className="h-1 w-16 md:w-24 bg-gradient-to-r from-transparent via-white/50 to-transparent mx-auto mb-2 md:mb-4" />
+                      </motion.div>
+
+                      {/* Name and Title */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.7 + index * 0.2 }}
+                        className="text-center px-4"
+                      >
+                        <h3 className="text-2xl md:text-3xl text-white mb-1 md:mb-2">{founder.name}</h3>
+                        <p className="text-lg md:text-xl text-white/80 mb-1">{founder.title}</p>
+                        <p className="text-xs md:text-sm text-white/60">C Life Pharmaceuticals</p>
+                      </motion.div>
+
+                      {/* Animated Lines */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden">
+                        <motion.div
+                          animate={{
+                            x: ['-100%', '100%'],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                          className={`h-full w-1/3 bg-gradient-to-r ${founder.color}`}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="space-y-4 text-gray-700 leading-relaxed">
-                    {founder.message.split("\n\n").map((paragraph, pIndex) => (
-                      <p key={pIndex} className="text-base">
-                        {paragraph}
+
+                  {/* Message Section */}
+                  <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center relative">
+                    {/* Decorative Quote Icon */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
+                      className="mb-4 md:mb-6"
+                    >
+                      <div className="relative inline-block">
+                        <Quote className={`w-8 h-8 md:w-12 md:h-12 text-transparent bg-gradient-to-br ${founder.color} bg-clip-text`} />
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.5, 1],
+                            opacity: [0.3, 0, 0.3],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                          className="absolute inset-0 hidden md:block"
+                        >
+                          <Quote className={`w-8 h-8 md:w-12 md:h-12 text-transparent bg-gradient-to-br ${founder.color} bg-clip-text opacity-50`} />
+                        </motion.div>
+                      </div>
+                    </motion.div>
+
+                    {/* Message Content */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
+                      className="space-y-3 md:space-y-4 text-gray-700 leading-relaxed"
+                    >
+                      {founder.message.split("\n\n").map((paragraph, pIndex) => (
+                        <motion.p
+                          key={pIndex}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                          transition={{ duration: 0.5, delay: 0.8 + index * 0.2 + pIndex * 0.1 }}
+                          className="text-sm md:text-base relative pl-3 md:pl-4"
+                        >
+                          <span className={`absolute left-0 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b ${founder.color} rounded-full`} />
+                          {paragraph}
+                        </motion.p>
+                      ))}
+                    </motion.div>
+
+                    {/* Signature */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 1 + index * 0.2 }}
+                      className="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-gray-200 relative"
+                    >
+                      <p className={`text-right italic text-transparent bg-gradient-to-r ${founder.color} bg-clip-text text-base md:text-lg`}>
+                        — {founder.name}
                       </p>
-                    ))}
-                  </div>
-                  <div className="mt-8 pt-8 border-t border-gray-200">
-                    <p className="text-right italic text-gray-600">
-                      — {founder.name}
-                    </p>
+                      {/* Animated Underline */}
+                      <motion.div
+                        initial={{ scaleX: 0 }}
+                        animate={isVisible ? { scaleX: 1 } : {}}
+                        transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
+                        className={`h-0.5 w-24 md:w-32 ml-auto mt-2 bg-gradient-to-r ${founder.color} origin-right`}
+                      />
+                    </motion.div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Call to Action */}
@@ -128,10 +294,10 @@ export function Founders({ onBack }: FoundersProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-12 text-white shadow-2xl"
+          className="mt-16 text-center bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-12 text-white shadow-2xl"
         >
-          <h2 className="text-3xl lg:text-4xl mb-4">Join Our Mission</h2>
-          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl mb-3 md:mb-4">Join Our Mission</h2>
+          <p className="text-base md:text-xl mb-6 md:mb-8 text-white/90 max-w-2xl mx-auto">
             Be part of a team that's dedicated to making a difference in
             healthcare. Explore career opportunities at C Life Pharmaceuticals.
           </p>
@@ -139,7 +305,7 @@ export function Founders({ onBack }: FoundersProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onBack}
-            className="px-8 py-4 bg-white text-primary rounded-full hover:bg-accent hover:text-white transition-colors shadow-lg text-lg"
+            className="px-6 py-3 md:px-8 md:py-4 bg-white text-primary rounded-full hover:bg-accent hover:text-white transition-colors shadow-lg text-sm md:text-lg"
           >
             Explore Opportunities
           </motion.button>
