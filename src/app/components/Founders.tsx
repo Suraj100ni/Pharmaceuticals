@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { ArrowLeft, Quote, Sparkles, Zap, Target, Lightbulb } from "lucide-react";
-import niharikaImage from "figma:asset/daf10a17dc0c9c4d05d5dc26c4e84cb81f7b3566.png";
+import niharikaImage from "@/assets/mdimage.jpeg";
 
 interface FoundersProps {
   onBack: () => void;
